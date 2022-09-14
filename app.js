@@ -1,13 +1,26 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+require('dotenv')
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const session = require("express-session");
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+const bcrypt = require('bcryptjs')
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const mongoose = require('mongoose');
+const mongoDB = process.env.DB
+mongoose.connect(mongoDB, 
+  { 
+    useNewUrlParser: true, 
+    useUnifiedTopology: true 
+  });
+  const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-
-var app = express();
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

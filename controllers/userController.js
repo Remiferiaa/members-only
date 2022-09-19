@@ -37,3 +37,7 @@ exports.user_create_post = [
         }
     }
 ]
+
+exports.user_login_get = (req, res, next) => {
+    res.render('login', { title: 'Login' })
+}

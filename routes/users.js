@@ -65,4 +65,12 @@ router.get("/logout", (req, res, next) => {
     });
 });
 
+router.get('/member', user_controller.user_member_get)
+
+router.post('/member', user_controller.user_member_post)
+
+router.get('/admin', user_controller.user_admin_get)
+
+router.post('/admin', user_controller.user_admin_post)
+
 module.exports = router;

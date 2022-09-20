@@ -1,9 +1,22 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const message_controller = require('../controllers/messageController')
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express', user: req.user });
-});
+function authCheck(req, res, next) {
+  if (req.user) {
+    return next()
+  } else {
+    res.redirect('/users/login')
+    return
+  }
+}
+
+router.get('/', message_controller.message_list)
+
+router.get('/message', authCheck, message_controller.message_create_get)
+
+router.post('/message', message_controller.message_create_post)
+
+router.post('/delete', message_controller.message_delete_post)
 
 module.exports = router;

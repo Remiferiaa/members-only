@@ -4,4 +4,16 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    block content
+  div.header-container
+    block header
+       ul.sidebar-nav
+        li
+          a(href='/') Home
+         li
+          a(href='/users/create') Sign up
+        li
+          a(href='/users/member') Member 
+        li
+          a(href='/users/admin') Admin
+
+  block content

@@ -7,6 +7,15 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require('bcryptjs')
 
+function authCheck(req, res, next) {
+    if (req.user) {
+      return next()
+    } else {
+      res.redirect('/users/login')
+      return
+    }
+  }
+
 passport.use(
     new LocalStrategy((username, password, done) => {
         User.findOne({ username: username }, (err, user) => {
@@ -65,11 +74,11 @@ router.get("/logout", (req, res, next) => {
     });
 });
 
-router.get('/member', user_controller.user_member_get)
+router.get('/member', authCheck, user_controller.user_member_get)
 
 router.post('/member', user_controller.user_member_post)
 
-router.get('/admin', user_controller.user_admin_get)
+router.get('/admin', authCheck, user_controller.user_admin_get)
 
 router.post('/admin', user_controller.user_admin_post)
 

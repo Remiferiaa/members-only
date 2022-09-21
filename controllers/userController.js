@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs')
 const { body, validationResult } = require('express-validator')
 
 exports.user_create_get = (req, res, next) => {
-    res.render('form', { title: 'New User', state: 'base', message: req.flash('error')})
+    res.render('form', { title: 'New User', state: 'base', message: req.flash('error') })
 }
 
 exports.user_create_post = [
@@ -25,7 +25,7 @@ exports.user_create_post = [
                 if (err) {
                     return next(err)
                 } if (result) {
-                    res.render('form', { title: 'New User', state: 'base', user, message: 'Username taken'})
+                    res.render('form', { title: 'New User', state: 'base', user, message: 'Username taken' })
                 } else {
                     bcrypt.hash(user.password, 10, (err, hashedPassword) => {
                         if (err) {
@@ -36,7 +36,10 @@ exports.user_create_post = [
                                 if (err) {
                                     return next(err)
                                 }
-                                res.redirect('/')
+                                req.login(user, function (err) {
+                                    if (err) { return next(err); }
+                                    return res.redirect('/');
+                                })
                             })
                         }
                     })

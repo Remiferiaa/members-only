@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs')
 const { body, validationResult } = require('express-validator')
 
 exports.user_create_get = (req, res, next) => {
-    res.render('form', { title: 'New User' , state: 'base'})
+    res.render('form', { title: 'New User', state: 'base', message: req.flash('error')})
 }
 
 exports.user_create_post = [
@@ -18,19 +18,27 @@ exports.user_create_post = [
             password: req.body.password
         })
         if (!errors.isEmpty()) {
-            res.render('form', { title: 'New User' , user, error: errors.array() })
+            res.render('form', { title: 'New User', state: 'base', user, error: errors.mapped() })
             return
         } else {
-            bcrypt.hash(user.password, 10, (err, hashedPassword) => {
+            User.findOne({ username: req.body.username }, function (err, result) {
                 if (err) {
                     return next(err)
+                } if (result) {
+                    res.render('form', { title: 'New User', state: 'base', user, message: 'Username taken'})
                 } else {
-                    user.password = hashedPassword
-                    user.save((err) => {
+                    bcrypt.hash(user.password, 10, (err, hashedPassword) => {
                         if (err) {
                             return next(err)
+                        } else {
+                            user.password = hashedPassword
+                            user.save((err) => {
+                                if (err) {
+                                    return next(err)
+                                }
+                                res.redirect('/')
+                            })
                         }
-                        res.redirect('/')
                     })
                 }
             })
@@ -39,7 +47,7 @@ exports.user_create_post = [
 ]
 
 exports.user_login_get = (req, res, next) => {
-    res.render('login', { title: 'Login', message: req.flash('error')})
+    res.render('login', { title: 'Login', message: req.flash('error') })
 }
 
 exports.user_member_get = (req, res, next) => {
@@ -61,8 +69,8 @@ exports.user_member_post = [
             res.render('form', { title: 'Become a member', state: 'member', error: errors.array() })
             return
         } else {
-            User.findByIdAndUpdate(req.user.id, user, {}, function(err, result) {
-                if(err) {
+            User.findByIdAndUpdate(req.user.id, user, {}, function (err, result) {
+                if (err) {
                     return next(err)
                 } else {
                     res.redirect('/')
@@ -73,7 +81,7 @@ exports.user_member_post = [
 ]
 
 exports.user_admin_get = (req, res, next) => {
-    res.render('form', { title: 'Become an admin', state: 'admin', message: req.flash('error')})
+    res.render('form', { title: 'Become an admin', state: 'admin', message: req.flash('error') })
 }
 
 exports.user_admin_post = [
@@ -91,8 +99,8 @@ exports.user_admin_post = [
             res.render('form', { title: 'Become an admin', state: 'admin', error: errors.array() })
             return
         } else {
-            User.findByIdAndUpdate(req.user.id, user, {}, function(err, result) {
-                if(err) {
+            User.findByIdAndUpdate(req.user.id, user, {}, function (err, result) {
+                if (err) {
                     return next(err)
                 } else {
                     res.redirect('/')

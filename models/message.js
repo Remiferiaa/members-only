@@ -11,8 +11,8 @@ const MessageSchema = new Schema({
 
 MessageSchema
     .virtual('posted')
-    .get(() => {    
-        this.postedAt.toLocaleString(DateTime.DATE_MED)
+    .get(function() {    
+        return this.postedAt.toLocaleDateString()
     })
 
 module.exports = mongoose.model('Message', MessageSchema)

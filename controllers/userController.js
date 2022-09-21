@@ -51,7 +51,7 @@ exports.user_login_get = (req, res, next) => {
 }
 
 exports.user_member_get = (req, res, next) => {
-    res.render('form', { title: 'Become a member', state: 'member', message: req.flash('error') })
+    res.render('form', { title: 'Become a member', state: 'member', user: req.user, message: req.flash('error') })
 }
 
 exports.user_member_post = [
@@ -66,7 +66,7 @@ exports.user_member_post = [
             _id: req.user.id
         })
         if (!errors.isEmpty()) {
-            res.render('form', { title: 'Become a member', state: 'member', error: errors.array() })
+            res.render('form', { title: 'Become a member', state: 'member', user: req.user, error: errors.array() })
             return
         } else {
             User.findByIdAndUpdate(req.user.id, user, {}, function (err, result) {
@@ -81,7 +81,7 @@ exports.user_member_post = [
 ]
 
 exports.user_admin_get = (req, res, next) => {
-    res.render('form', { title: 'Become an admin', state: 'admin', message: req.flash('error') })
+    res.render('form', { title: 'Become an admin', user: req.user, state: 'admin', message: req.flash('error') })
 }
 
 exports.user_admin_post = [
@@ -96,7 +96,7 @@ exports.user_admin_post = [
             _id: req.user.id
         })
         if (!errors.isEmpty()) {
-            res.render('form', { title: 'Become an admin', state: 'admin', error: errors.array() })
+            res.render('form', { title: 'Become an admin', state: 'admin', user: req.user, error: errors.array() })
             return
         } else {
             User.findByIdAndUpdate(req.user.id, user, {}, function (err, result) {

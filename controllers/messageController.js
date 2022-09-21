@@ -5,7 +5,7 @@ const { body, validationResult } = require('express-validator')
 exports.message_list = async (req, res, next) => {
     try {
         const messages = await Message.find().populate('postedBy').exec()
-        res.render('index', { title: 'Posts', messages: messages })
+        res.render('index', { title: 'Posts', messages: messages, user: req.user })
     } catch (err) {
         return next(err)
     }
@@ -26,7 +26,7 @@ exports.message_create_post = [
             msgBody: req.body.content
         })
         if(!error.isEmpty()) {
-            res.render('message', { title: 'New Message', title: message.msgTitle, content: message.msgBody, errors: error.mapped() })
+            res.render('message', { title: 'New Message', title: message.msgTitle, content: message.msgBody, user: req.user, errors: error.mapped() })
             return
         } else {
             message.save((err) => {

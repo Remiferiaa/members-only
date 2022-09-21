@@ -9,11 +9,16 @@ html
        ul.sidebar-nav
         li
           a(href='/') Home
-        li
-          a(href='/users/create') Sign up
-        li
-          a(href='/users/member') Member 
-        li
-          a(href='/users/admin') Admin
-
+        if user
+          li
+            a(href='/users/member') Member 
+          li
+            a(href='/users/admin') Admin
+          li
+            a(href='/users/logout') Log Out Here 
+        else 
+          li
+            a(href='/users/create') Sign up
+          li
+            a(href='/users/login') Sign in
   block content

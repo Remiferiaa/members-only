@@ -27,10 +27,10 @@ passport.use(
             }
             bcrypt.compare(password, user.password, (err, res) => {
                 if (res) {
-                  // passwords match! log user in
+
                   return done(null, user)
                 } else {
-                  // passwords do not match!
+                  
                   return done(null, false, { message: "Incorrect password" })
                 }
               })
@@ -61,7 +61,8 @@ router.get('/login', user_controller.user_login_get)
 
 router.post("/login", passport.authenticate("local", {
         successRedirect: "/",
-        failureRedirect: "/"
+        failureRedirect: "/users/login",
+        failureFlash: true
     })
 );
 

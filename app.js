@@ -2,6 +2,7 @@ require('dotenv').config()
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
+const flash = require('connect-flash')
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const session = require("express-session");
@@ -32,6 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({ secret: process.env.SECRET, resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash())
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 

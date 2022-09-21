@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs')
 const { body, validationResult } = require('express-validator')
 
 exports.user_create_get = (req, res, next) => {
-    res.render('form', { title: 'New User' , state: 'base' })
+    res.render('form', { title: 'New User' , state: 'base'})
 }
 
 exports.user_create_post = [
@@ -39,11 +39,11 @@ exports.user_create_post = [
 ]
 
 exports.user_login_get = (req, res, next) => {
-    res.render('login', { title: 'Login' })
+    res.render('login', { title: 'Login', message: req.flash('error')})
 }
 
 exports.user_member_get = (req, res, next) => {
-    res.render('form', { title: 'Become a member', state: 'member' })
+    res.render('form', { title: 'Become a member', state: 'member', message: req.flash('error') })
 }
 
 exports.user_member_post = [
@@ -73,7 +73,7 @@ exports.user_member_post = [
 ]
 
 exports.user_admin_get = (req, res, next) => {
-    res.render('form', { title: 'Become an admin', state: 'admin'})
+    res.render('form', { title: 'Become an admin', state: 'admin', message: req.flash('error')})
 }
 
 exports.user_admin_post = [

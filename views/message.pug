@@ -1,4 +1,16 @@
 extend layout 
 
 block content 
-  p= 'a'
+  form(action='' method='POST')
+    div
+      label(for='title') Title: 
+      input(type='text' name='title' id='title' placeholder='Title' autocomplete='off' required)
+      label(for='content') Content: 
+      textarea(name='content' id='content' rows=5 cols=30 required) 
+    button(type='submit' class='submitBtn') Submit
+
+  br
+  if error
+    ul.errors
+      each err in error
+        p!= err.msg

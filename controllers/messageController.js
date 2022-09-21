@@ -26,7 +26,7 @@ exports.message_create_post = [
             msgBody: req.body.content
         })
         if(!error.isEmpty()) {
-            res.render('message', { title: 'New Message', title: message.msgTitle, content: message.msgBody, errors: error.array() })
+            res.render('message', { title: 'New Message', title: message.msgTitle, content: message.msgBody, errors: error.mapped() })
             return
         } else {
             message.save((err) => {

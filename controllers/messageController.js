@@ -23,7 +23,8 @@ exports.message_create_post = [
         const error = validationResult(req)
         const message = new Message ({
             msgTitle: req.body.title,
-            msgBody: req.body.content
+            msgBody: req.body.content,
+            postedBy: req.user
         })
         if(!error.isEmpty()) {
             res.render('message', { title: 'New Message', title: message.msgTitle, content: message.msgBody, user: req.user, errors: error.mapped() })

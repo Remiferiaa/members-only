@@ -3,5 +3,18 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
-  if user 
-    p= user.username 
+  
+  for msg in messages
+    div
+      p= msg.msgTitle
+      p= msg.msgBody
+      if user
+        p= msg.postedBy.username
+        p= msg.posted
+        if user.isAdmin
+          form(method="POST" action='')
+            input(type='hidden' name='msgid' id='msgid' value=msg._id)
+            button(type='submit' class='submitBtn') Delete
+      else 
+        p Posted By: anonymous
+        p Posted At: unknown

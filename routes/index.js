@@ -17,6 +17,6 @@ router.get('/message', authCheck, message_controller.message_create_get)
 
 router.post('/message', message_controller.message_create_post)
 
-router.post('/delete', message_controller.message_delete_post)
+router.post('/', message_controller.message_delete_post)
 
 module.exports = router;

@@ -5,7 +5,7 @@ const { body, validationResult } = require('express-validator')
 exports.message_list = async (req, res, next) => {
     try {
         const messages = await Message.find().populate('postedBy').exec()
-        res.render('index', { title: 'Posts' })
+        res.render('index', { title: 'Posts', messages: messages })
     } catch (err) {
         return next(err)
     }

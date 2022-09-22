@@ -9,5 +9,6 @@ Members only project from [The Odin Project](https://www.theodinproject.com/less
 # Features
 - Able to sign up as new user
 - Able to login
+- All users are able to post messages
 - Users who are members and admin able to see message author and date posted.
 - Users who are admin can also delete messages

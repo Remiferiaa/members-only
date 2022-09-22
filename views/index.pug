@@ -1,20 +1,18 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
-  
   for msg in messages
-    div
-      p= msg.msgTitle
-      p= msg.msgBody
-      if user
-        p= msg.postedBy.username
-        p= msg.posted
-        if user.isAdmin
-          form(method="POST" action='')
-            input(type='hidden' name='msgid' id='msgid' value=msg._id)
-            button(type='submit' class='submitBtn') Delete
-      else 
-        p Posted By: anonymous
-        p Posted At: unknown
+    div.msgs
+      p.msgsTitle= msg.msgTitle
+      p.msgsBod= msg.msgBody
+      div.poster
+        if user
+          p.post= msg.postedBy.username
+          p.post= msg.posted
+          if user.isAdmin
+            form(method="POST" action='' style='align-self: end')
+              input(type='hidden' name='msgid' id='msgid' value=msg._id)
+              button(type='submit' class='delBtn') &#128465;
+        else 
+          p.post Anonymous
+          p.post Unknown

@@ -10,17 +10,20 @@ html
         li
           a(href='/') Home
         if user
-          li
-            a(href='/message') Message
-          li
-            a(href='/users/member') Member 
-          li
-            a(href='/users/admin') Admin
-          li
-            a(href='/users/logout') Log Out Here 
+          div.links
+            li
+              a(href='/message') Message
+            li
+              a(href='/users/member') Member 
+            li
+              a(href='/users/admin') Admin
+            li
+              a(href='/users/logout') Log Out 
         else 
-          li
-            a(href='/users/create') Sign up
-          li
-            a(href='/users/login') Sign in
-  block content
+          div.links
+            li
+              a(href='/users/create') Sign up
+            li
+              a(href='/users/login') Sign in
+  div.content
+    block content

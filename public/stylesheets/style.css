@@ -1,8 +1,117 @@
 body {
-  padding: 50px;
+  background-color: rgb(209, 209, 209);
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+body, li, ul, p, .delBtn {
+  margin: 0;
+  padding: 0;
 }
 
 a {
   color: #00B7FF;
+  text-decoration: none;
+}
+
+li, ul {
+  list-style-type: none;
+}
+
+.sidebar-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: rgb(25, 25, 85);
+}
+
+.links {
+  display: flex;
+  gap: 1rem;
+}
+
+.content {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.5rem;
+  gap: 0.5rem;
+}
+
+.msgs {
+  width: 50vw;
+  background-color: rgb(25, 25, 43);
+  padding: 0.5rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border: 2px solid black;
+  border-radius: 12px;
+}
+
+.msgsTitle, .msgsBod {
+  background-color: rgb(80, 80, 97);
+  padding: 0.5rem;
+  border: 2px solid black;
+  border-radius: 12px;
+}
+
+.poster {
+  align-self: end;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.msgsTitle {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.msgsBod, .poster {
+  font-size: 0.5rem;
+}
+
+.delBtn {
+  color: white;
+  background-color: rgb(25, 25, 43);
+  align-self: end;
+  border: none;
+  cursor: pointer;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.lbl {
+  font-weight: bold;
+  color: rgb(62, 9, 78);
+}
+
+.inp {
+  border: 1px solid black;
+  border-radius: 6px;
+  resize: none;
+  padding: 2px;
+}
+
+.inp:focus {
+  outline: 2px solid black;
+}
+
+.submitBtn {
+  background-color: rgb(25, 155, 25);
+  color: black;
+  border: 2px solid black;
+  border-radius: 6px;
+  cursor: pointer
+}
+
+.submitBtn:hover {
+  background-color: rgb(40, 185, 40);
 }

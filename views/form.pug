@@ -3,19 +3,18 @@ extend layout
 block content
   h1= title
   if state != 'base'
-    form(action='' method='POST')
-      label(for='password') Enter #{state} Password: 
-      input(type='password' name='password' id='password' placeholder='Password' autocomplete='off' required)
+    form(action='' method='POST' class='form')
+      label(for='password' class='lbl') Enter #{state} Password: 
+      input(type='password' name='password' id='password' placeholder='Password' autocomplete='off' required class='inp')
       button(type='submit' class='submitBtn') Submit
 
   else
-    form(action='' method='POST')
-      div
-        label(for='username') Username: 
-        input(type='text' name='username' id='username' placeholder='Contributor Name' autocomplete='off' required)
-        p= message
-        label(for='password') Password: 
-        input(type='password' name='password' id='password' placeholder='Password' autocomplete='off' required)
+    form(action='' method='POST' class='form')
+      label(for='username' class='lbl') Username: 
+      input(type='text' name='username' id='username' placeholder='Contributor Name' autocomplete='off' required class='inp')
+      p= message
+      label(for='password' class='lbl') Password: 
+      input(type='password' name='password' id='password' placeholder='Password' autocomplete='off' required class='inp')
       button(type='submit' class='submitBtn') Submit
 
   br

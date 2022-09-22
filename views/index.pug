@@ -4,7 +4,7 @@ block content
   for msg in messages
     div.msgs
       p.msgsTitle= msg.msgTitle
-      p.msgsBod= msg.msgBody
+      p.msgsBod(style='white-space: pre-wrap')= msg.msgBody
       div.poster
         if user
           p.post= msg.postedBy.username

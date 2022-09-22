@@ -9,6 +9,9 @@ const session = require("express-session");
 const passport = require("passport");
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const app = express();
+const compression = require('compression');
+const helmet = require('helmet');
 const mongoose = require('mongoose');
 const mongoDB = process.env.DB
 mongoose.connect(mongoDB, 
@@ -18,8 +21,6 @@ mongoose.connect(mongoDB,
   });
   const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-
-const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -37,6 +38,15 @@ app.use(flash())
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
+app.use(compression())
+app.use(
+  helmet.contentSecurityPolicy({
+    useDefaults: true,
+    directives: {
+      'img-src': ["'self'", 'https: data:']
+    }
+  })
+);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

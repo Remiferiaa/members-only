@@ -7,10 +7,7 @@ block content
     input(type='text' name='username' id='username' placeholder='Contributor Name' autocomplete='off' required class='inp')
     label(for='password' class='lbl') Password: 
     input(type='password' name='password' id='password' placeholder='Password' autocomplete='off' required class='inp')
+    if message 
+      p.err!= message
     button(type='submit' class='submitBtn') Submit
 
-  br
-  if error
-    ul.errors
-      each err in error
-        p!= err.msg

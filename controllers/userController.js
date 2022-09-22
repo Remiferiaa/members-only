@@ -69,7 +69,7 @@ exports.user_member_post = [
             _id: req.user.id
         })
         if (!errors.isEmpty()) {
-            res.render('form', { title: 'Become a member', state: 'member', user: req.user, error: errors.array() })
+            res.render('form', { title: 'Become a member', state: 'member', user: req.user, errors: errors.mapped() })
             return
         } else {
             User.findByIdAndUpdate(req.user.id, user, {}, function (err, result) {
@@ -99,7 +99,7 @@ exports.user_admin_post = [
             _id: req.user.id
         })
         if (!errors.isEmpty()) {
-            res.render('form', { title: 'Become an admin', state: 'admin', user: req.user, error: errors.array() })
+            res.render('form', { title: 'Become an admin', state: 'admin', user: req.user, errors: errors.mapped() })
             return
         } else {
             User.findByIdAndUpdate(req.user.id, user, {}, function (err, result) {

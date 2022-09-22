@@ -27,7 +27,7 @@ exports.message_create_post = [
             postedBy: req.user
         })
         if(!error.isEmpty()) {
-            res.render('message', { title: 'New Message', title: message.msgTitle, content: message.msgBody, user: req.user, errors: error.mapped() })
+            res.render('message', { title: 'New Message', head: message.msgTitle, descrip: message.msgBody, user: req.user, errors: error.mapped() })
             return
         } else {
             message.save((err) => {

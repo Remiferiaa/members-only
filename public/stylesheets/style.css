@@ -51,6 +51,10 @@ li, ul {
   border-radius: 12px;
 }
 
+.msgs:hover {
+  transform: scale(1.1);
+}
+
 .msgsTitle, .msgsBod {
   background-color: rgb(80, 80, 97);
   padding: 0.5rem;
@@ -86,6 +90,7 @@ li, ul {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  width: 40vw;
 }
 
 .lbl {
@@ -109,9 +114,15 @@ li, ul {
   color: black;
   border: 2px solid black;
   border-radius: 6px;
-  cursor: pointer
+  cursor: pointer;
+  width: 50%;
+  align-self: center;
 }
 
 .submitBtn:hover {
   background-color: rgb(40, 185, 40);
+}
+
+.err {
+  color: red;
 }

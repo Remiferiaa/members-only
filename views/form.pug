@@ -6,19 +6,19 @@ block content
     form(action='' method='POST' class='form')
       label(for='password' class='lbl') Enter #{state} Password: 
       input(type='password' name='password' id='password' placeholder='Password' autocomplete='off' required class='inp')
+      if errors && errors.password
+        p.err!=errors.password.msg
       button(type='submit' class='submitBtn') Submit
 
   else
     form(action='' method='POST' class='form')
       label(for='username' class='lbl') Username: 
       input(type='text' name='username' id='username' placeholder='Contributor Name' autocomplete='off' required class='inp')
-      p= message
+      if errors && errors.username
+        p.err!=errors.username.msg
+      p.err!= message
       label(for='password' class='lbl') Password: 
       input(type='password' name='password' id='password' placeholder='Password' autocomplete='off' required class='inp')
+      if errors && errors.password
+        p.err!=errors.password.msg
       button(type='submit' class='submitBtn') Submit
-
-  br
-  if error
-    ul.errors
-      each err in error
-        p!= err.msg

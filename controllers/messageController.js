@@ -12,7 +12,7 @@ exports.message_list = async (req, res, next) => {
 }
 
 exports.message_create_get = (req, res, next) => {
-    res.render('message', { title: 'New Message' })
+    res.render('message', { title: 'New Message', user: req.user })
 }
 
 exports.message_create_post = [

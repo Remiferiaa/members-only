@@ -1,7 +1,7 @@
 Members only project from [The Odin Project](https://www.theodinproject.com/lessons/nodejs-members-only)
 
 # Link
-[Demo](https://git.heroku.com/quiet-tundra-78392.git)
+[Demo](https://quiet-tundra-78392.herokuapp.com/)
 
 # About
 - Application made in express to practice the authentications
